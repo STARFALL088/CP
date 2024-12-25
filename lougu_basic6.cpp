@@ -154,7 +154,7 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    tc {
+    tc0 {
         int n,m;
         cin>>n>>m;
         // stringstream approch
