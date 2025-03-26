@@ -1,0 +1,8 @@
+lversion: '3.4'
+
+services:
+  dp:
+    image: dp
+    build:
+      context: .
+      dockerfile: ./Dockerfile

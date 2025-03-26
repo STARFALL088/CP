@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        #diagram-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 60px);
+            background: white;
+        }
+        .mermaid {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+</head>
+<body>
+    <header>
+        <h2>Cricket Simulator Workflow Diagram</h2>
+    </header>
+    <div id="diagram-container">
+        <div class="mermaid">
+            graph TD
+                A[Start] --> B[Welcome Screen]
+                B --> C[Main Menu]
+                
+                C -->|1| D[Login]
+                C -->|2| E[Signup]
+                C -->|3| F[Manage Team]
+                C -->|4| G[Simulate Match]
+                C -->|5| H[Exit]
+                
+                D --> D1[Validate Credentials]
+                D1 -->|Success| C
+                D1 -->|Failure| D
+                
+                E --> E1[Create New User]
+                E1 --> E2[Validate Password Strength]
+                E2 -->|Success| E3[Save User Data]
+                E3 --> C
+                E2 -->|Failure| E
+                
+                F --> F1[Team Management Menu]
+                F1 -->|1| F2[Add Batsman]
+                F1 -->|2| F3[Add Bowler]
+                F1 -->|3| F4[View Squad]
+                F1 -->|4| F5[Remove Batsman]
+                F1 -->|5| F6[Remove Bowler]
+                F1 -->|6| F7[Edit]
+                F1 -->|8| C
+                
+                G --> G1[Match Simulation]
+                G1 --> G2[Simulation Menu]
+                
+                G2 -->|1| G3[View Next Ball]
+                G2 -->|2| G4[View Current Status]
+                G2 -->|3| G5[Save Match Stats]
+                G2 -->|4| G1
+                
+                G3 --> G6[Update Stats]
+                G6 --> G7{First Innings?}
+                G7 -->|Yes| G8[Switch Innings]
+                G7 -->|No| G9[End Match]
+                G8 --> G2
+                G9 --> G10[Display Winner]
+                G10 --> G11[Show Man of the Match]
+                G11 --> H
+                
+                G4 --> G12[Display Options]
+                G12 -->|1| G13[Display Scoreboard]
+                G12 -->|2| G14[Display Team1 Stats]
+                G12 -->|3| G15[Display Team2 Stats]
+                G12 -->|4| G2
+
+                classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
+                classDef menu fill:#d4f1f9,stroke:#0077be,stroke-width:2px;
+                classDef action fill:#e1f7d5,stroke:#76b852,stroke-width:2px;
+                classDef decision fill:#ffe0cc,stroke:#ff9933,stroke-width:2px;
+                
+                class A,B default;
+                class C,F1,G2,G12 menu;
+                class D,E,F,G action;
+                class G7 decision;
+        </div>
+    </div>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

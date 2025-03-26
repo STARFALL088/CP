@@ -6,9 +6,9 @@ using namespace std;
 typedef long long ll;
 typedef long long lli;
 typedef long double lld;
-typedef pair<int, int> pii;
+typedef pair<lli, lli> pii;
 typedef pair<lli, lli> pll;
-typedef vector<int> vi;
+typedef vector<lli> vi;
 typedef vector<vi> vvi;
 typedef vector<lli> vll;
 typedef vector<vll> vvl;
@@ -22,10 +22,10 @@ const lli mod = 1e9 + 7;
 const lli MAXN = 1e6;
 const double eps = 1e-10;
 const lli LINF = 1001002003004005006ll;
-const int INF = 1001001001;
-const int MX = 200005;
-constexpr int dx[] = {0, 0, 1, -1};
-constexpr int dy[] = {1, -1, 0, 0};
+const lli INF = 1001001001;
+const lli MX = 200005;
+constexpr lli dx[] = {0, 0, 1, -1};
+constexpr lli dy[] = {1, -1, 0, 0};
 const string ny[] = {"NO", "YES"};
 const string nys[] = {"No", "Yes"};
 
@@ -42,14 +42,14 @@ const string nys[] = {"No", "Yes"};
 #define pi acos(-1.0)
 #define sq(x) ((x) * (x))
 #define issq(x) (((lli)(sqrt((x)))) * ((lli)(sqrt((x)))) == (x))
-#define lg(r, n) (int)(log2(n) / log2(r))
+#define lg(r, n) (lli)(log2(n) / log2(r))
 #define setpre(n) fixed << setprecision(n)
 #define UNIQUE(a) (a).erase(unique(all(a)), (a).end())
 #define debug(x)              \
     cerr << #x << " = [ ";    \
     for (const auto &val : x) \
         cerr << val << " ";   \
-    cerr << "]\n";   //woeks fine for now
+    cerr << "]\n"; // woeks fine for now
 #define take(p, n, T) \
     vector<T> p(n);   \
     for (auto &i : p) \
@@ -57,7 +57,7 @@ const string nys[] = {"No", "Yes"};
 #define input(x)      \
     for (auto &i : x) \
     cin >> i
-#define print(x)          \
+#define prlli(x)          \
     for (auto &i : x)     \
         cout << i << " "; \
     cout << "\n"
@@ -74,14 +74,15 @@ const string nys[] = {"No", "Yes"};
 
 void err(istream_iterator<string> it) {}
 template <typename T, typename... Args>
-void err(istream_iterator<string> it, T a, Args... args) {
+void err(istream_iterator<string> it, T a, Args... args)
+{
     cerr << *it << " = " << a << endl;
     err(++it, args...);
 }
 // Loop macros
-#define loop(i, n) for (int i = 0; i < (n); ++i)
-#define rloop(i, n) for (int i = (n) - 1; i >= 0; --i)
-#define sloop(i, s, t) for (int i = s; i < t; ++i)
+#define loop(i, n) for (lli i = 0; i < (n); ++i)
+#define rloop(i, n) for (lli i = (n) - 1; i >= 0; --i)
+#define sloop(i, s, t) for (lli i = s; i < t; ++i)
 
 // Utility macros
 #define maxs(x, y) (x = max(x, y))
@@ -100,12 +101,12 @@ void err(istream_iterator<string> it, T a, Args... args) {
 #define YES puts("YES")
 #define NO puts("NO")
 #define tc    \
-    int t;    \
+    lli t;    \
     cin >> t; \
-    for (int ii = 1; ii <= t; ++ii)
+    for (lli ii = 1; ii <= t; ++ii)
 #define tc0    \
-    int t = 1; \
-    for (int ii = 1; ii <= t; ++ii)
+    lli t = 1; \
+    for (lli ii = 1; ii <= t; ++ii)
 #define nl cout << "\n";
 #define gp " "
 #define case(ii) cout << "Case " << ii << ": "
@@ -114,9 +115,9 @@ void err(istream_iterator<string> it, T a, Args... args) {
     freopen("output.txt", "w", stdout);
 // Graph input macro
 #define readgraph(arr, edges)         \
-    for (int i = 0; i < (edges); i++) \
+    for (lli i = 0; i < (edges); i++) \
     {                                 \
-        int a, b;                     \
+        lli a, b;                     \
         cin >> a >> b;                \
         arr[a].pb(b);                 \
         arr[b].pb(a);                 \
@@ -134,10 +135,13 @@ inline lli gcd(lli a, lli b) { return b == 0 ? a : gcd(b, a % b); }
 inline lli madd(lli a, lli b, lli m = mod) { return (a + b) % m; }
 inline lli msub(lli a, lli b, lli m = mod) { return (a - b + m) % m; }
 inline lli mmul(lli a, lli b, lli m = mod) { return (a * b) % m; }
-inline lli mpow(lli base, lli exp, lli m = mod) {
+inline lli mpow(lli base, lli exp, lli m = mod)
+{
     lli res = 1;
-    while (exp > 0) {
-        if (exp & 1) res = mmul(res, base, m);
+    while (exp > 0)
+    {
+        if (exp & 1)
+            res = mmul(res, base, m);
         base = mmul(base, base, m);
         exp >>= 1;
     }
@@ -148,20 +152,47 @@ inline lli minv(lli a, lli m = mod) { return mpow(a, m - 2, m); }
 // *****************************************************
 // ------------------- CODE STARTS HERE ----------------
 // *****************************************************
-
-int main() {
+lli l, n, m;
+vll p(100000);
+bool f(lli x)
+{
+    lli last = 0, cnt = 0;
+    for (lli i = 0; i < n; i++)
+    {
+        if (p[i] - last < x)
+            cnt++;
+        else
+            last = p[i];
+    }
+    return cnt <= m;
+}
+int main()
+{
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-    tc0 {
-        lli l,n,m;
-        cin>>l>>n>>m;
-        vll p(n);
-        for(int i=0;i<n;i++){
-            cin>>p[i];
+    tc0
+    {
+
+        cin >> l >> n >> m;
+        p.resize(n);
+        for (lli i = 0; i < n; i++)
+        {
+            cin >> p[i];
         }
-        
-        
+        srt(p);
+        lli left = 0, r = l;
+        lli ans = 0;
+        lli mid;
+        while (left <= r)
+        {
+            mid = left + (r - left) / 2;
+            if (f(mid))
+                left = mid + 1, ans = mid;
+            else
+                r = mid - 1;
+        }
+        cout << ans;
     }
 }

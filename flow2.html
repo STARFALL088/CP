@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        #diagram-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 60px);
+            background: white;
+        }
+        .mermaid {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+</head>
+<body>
+    <header>
+        <h2>Cricket Simulator - Login and Signup</h2>
+    </header>
+    <div id="diagram-container">
+        <div class="mermaid">
+            graph TD
+                D[Login] --> D1[Validate Credentials]
+                D1 -->|Success| C[Main Menu]
+                D1 -->|Failure| D
+                
+                E[Signup] --> E1[Create New User]
+                E1 --> E2[Validate Password Strength]
+                E2 -->|Success| E3[Save User Data]
+                E3 --> C
+                E2 -->|Failure| E
+
+                classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
+                classDef action fill:#e1f7d5,stroke:#76b852,stroke-width:2px;
+
+                class D,E action;
+        </div>
+    </div>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>

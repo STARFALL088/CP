@@ -1,0 +1,10 @@
+=== Team2 Batting ===
+NAME	RUNS	BALLS	4s	6s	OUT	STRIKE_RATE
+a	36	11	3	2	1	327.27
+b	10	4	0	0	1	250.00
+c	1	1	0	0	0	100.00
+
+=== Team2 Bowling ===
+NAME	OVERS	RUNS	WICKETS	ECONOMY
+d	1.1	33	0	28.29
+e	2.0	52	0	26.00
