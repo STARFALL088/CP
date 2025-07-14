@@ -162,10 +162,18 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    tc0 {
+    tc {
         lli n;
         cin>>n;
+        lli mx=INF;
         take(p,n,lli);
-        
+        vll ans;
+        loop(i,n){
+            ans.pb(abs(p[i]-i-1));
+        }
+        lli g=0;
+        loop(i,n)g=gcd(ans[i],g);
+        cerr<<"ANS---->";
+        cout<<g<<endl;
     }
 }

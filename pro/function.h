@@ -25,4 +25,5 @@ void option();
 void winner();
 void welcome();
 
+
 #endif // FUNCTIONS_H

@@ -1,0 +1,331 @@
+#pragma GCC optimize("Ofast,unroll-loops,no-stack-protector,fast-math")
+#include <bits/stdc++.h>
+using namespace std;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+namespace std
+{
+    using namespace __gnu_pbds;
+    template <typename T>
+    using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+};
+
+#ifndef ONLINE_JUDGE
+#define debug(x)              \
+    cerr << #x << " = [ ";    \
+    for (const auto &val : x) \
+        cerr << val << " ";   \
+    cerr << "]\n";
+#define error(args...)                           \
+    {                                            \
+        string _s = #args;                       \
+        replace(_s.begin(), _s.end(), ',', ' '); \
+        stringstream _ss(_s);                    \
+        istream_iterator<string> _it(_ss);       \
+        _err(_it, args);                         \
+    }
+void _err(istream_iterator<string> it) { cerr << "\n"; }
+template <typename T, typename... Args>
+void _err(istream_iterator<string> it, T a, Args... args)
+{
+    cerr << *it << " = " << a << " | ";
+    _err(++it, args...);
+}
+#else
+#define debug(...)
+#define error(...)
+#endif
+
+// Type definitions
+typedef long long ll;
+typedef long long lli;
+typedef long double lld;
+using ull = uint64_t;
+typedef pair<int, int> pii;
+typedef pair<lli, lli> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<lli> vll;
+typedef vector<vll> vvl;
+typedef vector<bool> vb;
+typedef vector<string> vs;
+typedef vector<char> vc;
+typedef vector<vc> vvc;
+
+// Constants
+const lli mod = 998244353;
+const lli mod1 = 1e9 + 7;
+const lli mod2 = 998244353;
+const lli MAXN = 1e6;
+const double eps = 1e-10;
+const lli LINF = 1001002003004005006ll;
+const int INF = 1001001001;
+const int MX = 200005;
+constexpr int dx[] = {0, 0, 1, -1};
+constexpr int dy[] = {1, -1, 0, 0};
+const string ny[] = {"NO", "YES"};
+const string nys[] = {"No", "Yes"};
+
+// Macros
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define rev(x) reverse(all(x))
+#define srt(x) sort(all(x))
+#define maxx (lli) fmax
+#define minn (lli) fmin
+#define pb push_back
+#define F first
+#define S second
+#define pi acos(-1.0) // 2*asinl(1.0);
+#define sq(x) ((x) * (x))
+#define issq(x) (((lli)(sqrt((x)))) * ((lli)(sqrt((x)))) == (x))
+#define lg(r, n) (lli)(log2l(n) / log2l(r))
+#define setpre(n) fixed << setprecision(n)
+#define UNIQUE(a) (a).erase(unique(all(a)), (a).end())
+#define take(p, n, T) \
+    vector<T> p(n);   \
+    for (auto &i : p) \
+        cin >> i;
+#define input(x)      \
+    for (auto &i : x) \
+    cin >> i
+#define print(x)              \
+    for (const auto &val : x) \
+        cout << val << " ";   \
+    cout << endl;
+// Loop macros
+#define loop(i, n) for (int i = 0; i < (n); ++i)
+#define rloop(i, n) for (int i = (n) - 1; i >= 0; --i)
+#define sloop(i, s, t) for (int i = s; i < t; ++i)
+
+// Utility macros
+#define arrsum(arr) std::accumulate(arr.begin(), arr.end(), 0LL)
+#define maxs(x, y) (x = max(x, y))
+#define mins(x, y) (x = min(x, y))
+template <class T>
+bool chmax(T &a, const T &b)
+{
+    if (a < b)
+    {
+        a = b;
+        return 1;
+    }
+    return 0;
+}
+template <class T>
+bool chmin(T &a, const T &b)
+{
+    if (a > b)
+    {
+        a = b;
+        return 1;
+    }
+    return 0;
+}
+#define limit(x, l, r) max(l, min(x, r))
+#define lims(x, l, r) (x = max(l, min(x, r)))
+#define isin(x, l, r) ((l) <= (x) && (x) <= (r))
+#define pcnt __builtin_popcountll
+#define snuke srand((unsigned)clock() + (unsigned)time(NULL))
+#define show_var(x) cout << #x << " = " << x << endl
+#define PQ(T) priority_queue<T, vector<T>, greater<T>>
+#define bn(x) ((1 << (x)) - 1)
+#define dup(x, y) (((x) + (y) - 1) / (y))
+#define drnd(x, y) (((x) + (y) / 2) / (y))
+#define nl cout << endl;
+#define YES cout << "YES" << endl;
+#define NO cout << "NO" << endl;
+#define Yes cout << "Yes" << endl;
+#define No cout << "No" << endl;
+#define tc    \
+    int t;    \
+    cin >> t; \
+    for (int ii = 1; ii <= t; ++ii)
+#define tc0    \
+    int t = 1; \
+    for (int ii = 1; ii <= t; ++ii)
+#define gp " "
+#define case(ii) cout << "Case " << ii << ": "
+#define freopen                       \
+    freopen("input.txt", "r", stdin); \
+    freopen("output.txt", "w", stdout);
+// Graph input macro
+#define readgraph(arr, edges)         \
+    for (int i = 0; i < (edges); i++) \
+    {                                 \
+        int a, b;                     \
+        cin >> a >> b;                \
+        arr[a].pb(b);                 \
+        arr[b].pb(a);                 \
+    }
+#define by(x) [](const auto &a, const auto &b) { return a.x < b.x; }
+#define tolower_str(s) transform(all(s), s.begin(), ::tolower)
+#define toupper_str(s) transform(all(s), s.begin(), ::toupper)
+#define cng_str(s) transform(all(s), s.begin(), [](char c) { return c ^ ' '; })
+#define clr(arr, val) memset(arr, val, sizeof(arr))
+
+// Utility functions
+inline lli gcd(lli a, lli b) { return b == 0 ? a : gcd(b, a % b); }
+#define lcm(a, b) (1LL * (a) * (b)) / gcd(a, b)
+
+inline lli madd(lli a, lli b, lli m = mod) { return ((a % m) + (b % m)) % m; }
+inline lli msub(lli a, lli b, lli m = mod) { return (((a % m) - (b % m)) % m + m) % m; }
+inline lli mmul(lli a, lli b, lli m = mod) { return ((a % m) * (b % m)) % m; }
+inline lli mpow(lli base, lli exp, lli m = mod)
+{
+    lli res = 1LL;
+    while (exp > 0)
+    {
+        if (exp & 1)
+            res = mmul(res, base, m);
+        base = mmul(base, base, m);
+        exp >>= 1LL;
+    }
+    return res;
+}
+inline lli minv(lli a, lli m = mod) { return mpow(a, m - 2, m); }
+
+// *****************************************************
+// ------------------- CODE STARTS HERE ----------------
+// *****************************************************
+template<int64_t MOD_ = mod2> struct modint_t {
+    static constexpr int64_t MOD = MOD_;
+    static_assert(MOD_ > 0);
+    int64_t val;
+    modint_t(int64_t _val = 0) : val(_val % MOD) {
+        if(val < 0) val += MOD;
+    }
+    explicit operator int64_t() const {
+        return val;
+    }
+    int64_t get_mod(){
+        return MOD;
+    }
+    friend std::ostream& operator<<(std::ostream& out, const modint_t& p){
+        out << int64_t(p);
+        return out;
+    }
+    friend std::istream& operator>>(std::istream& in, modint_t& p){
+        int64_t v;
+        in >> v;
+        p = modint_t(v);
+        return in;
+    }
+    modint_t operator+ (modint_t other) const {
+        return modint_t(val + other.val);
+    }
+    void operator+= (modint_t other){
+        val += other.val;
+        val %= MOD;
+    }
+    modint_t operator- () const {
+        return modint_t(MOD - val);
+    }
+    modint_t operator- (modint_t other) const {
+        return modint_t(val + MOD - other.val);
+    }
+    void operator-= (modint_t other) {
+        val += MOD - other.val;
+        val %= MOD;
+    }
+    modint_t operator* (modint_t other) const {
+        return modint_t(val * other.val);
+    }
+    void operator*= (modint_t other) {
+        val *= other.val;
+        val %= MOD;
+    }
+    bool operator== (modint_t other) const {
+        return val == other.val;
+    }
+    bool operator!= (modint_t other) const {
+        return val != other.val;
+    }
+    modint_t& operator++() {
+        val = (val + 1) % MOD;
+        return *this;
+    }    
+    modint_t operator++(int) {
+        modint_t temp = *this;
+        ++(*this);
+        return temp;
+    }  
+    modint_t& operator--() {
+        val = (val - 1 + MOD) % MOD;
+        return *this;  
+    }  
+    modint_t operator--(int) {
+        modint_t temp = *this;
+        --(*this);
+        return temp;
+    } 
+};
+template<int64_t MOD_ = mod1>
+modint_t<MOD_> pow(modint_t<MOD_> a, int64_t p) {
+    assert(p >= 0);
+    return p == 0 ? modint_t<MOD_>(1) : pow(a * a, p / 2) * modint_t<MOD_>(p & 1 ? a : 1);
+}
+template<int64_t MOD_ = mod1>
+modint_t<MOD_> inverse (modint_t<MOD_> a) {
+    assert(int64_t(a) != 0);
+    return pow(a, MOD_ - 2);
+}
+template<int64_t MOD_ = mod1>
+modint_t<MOD_> operator/(modint_t<MOD_> a, modint_t<MOD_> b) {
+    return a * inverse(b);
+}
+template<int64_t MOD_ = mod1>
+modint_t<MOD_> operator/(modint_t<MOD_> a, int64_t b) {
+    return a / modint_t<MOD_>(b);
+}
+template<int64_t MOD_ = mod1>
+modint_t<MOD_>& operator/=(modint_t<MOD_> &a, modint_t<MOD_> b) {
+    return a = a / b;
+}
+template<int64_t MOD_ = mod1>
+modint_t<MOD_> operator/=(modint_t<MOD_> &a, int64_t b) {
+    return a = a / modint_t<MOD_>(b);
+} 
+using mint64_t = modint_t<>;
+using mll = mint64_t;
+vector<lli> factorial(lli n = MAXN, lli mod = mod)
+{
+    vector<lli> fact(n + 1, 1);
+    for (lli i = 2; i <= n; i++)
+    {
+        fact[i] = (1LL * fact[i - 1] * i) % mod;
+    }
+    return fact;
+}
+lli nCr(lli n, lli r, const vector<lli> &fact, lli mod = mod)
+{
+    if (r > n)
+        return 0;
+    lli numerator = fact[n];
+    lli denominator = (1LL * fact[r] * fact[n - r]) % mod;
+    return (1LL * numerator * mpow(denominator, mod - 2, mod)) % mod;
+}
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    vll fact = factorial();
+    tc0
+    {
+        
+        lli n;
+        cin >> n;
+        mll ans = nCr(n/3,n/6,fact);
+        for (int i = 0; i < n / 3; i ++)
+        {
+            take(p, 3, lli);
+            srt(p);
+            if (p[0] == p[2])
+                ans *= mll(3);
+            else if (p[0] == p[1])
+                ans *= mll(2);
+        }
+        cout << ans;
+    }
+}

@@ -166,10 +166,21 @@ int main() {
         lli a,b,c;
         cin>>a>>b>>c;
         if(a>b)swap(a,b);
-        lli ase=(a-b)*2;
+        lli ase=abs(a-b)*2;
         lli gap=abs(a-b);
         lli ans=-1;
 
+        ans=c+gap;
+        ans%=ase;
+        if(ans==0)ans+=ase;
+
+        if(b-a<=1){
+            ans=-1;
+        }
+        if(b!=a+gap)ans=-1;
+        if(b>gap*2)ans=-1;
+        if(c>gap*2)ans=-1;
+        cout<<ans<<endl;
         
     }
 }

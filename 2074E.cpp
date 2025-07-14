@@ -3,10 +3,11 @@
 using namespace std;
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
-namespace std{
-using namespace __gnu_pbds;
-template<typename T>
-using ordered_set   =   tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+namespace std
+{
+    using namespace __gnu_pbds;
+    template <typename T>
+    using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 };
 // Type definitions
 typedef long long ll;
@@ -24,9 +25,9 @@ typedef vector<char> vc;
 typedef vector<vc> vvc;
 
 // Constants
-const lli mod = 1e9 + 7; //998244353; 
-const lli mod1 = 1e9 + 7; 
-const lli mod2 = 998244353; 
+const lli mod = 1e9 + 7; // 998244353;
+const lli mod1 = 1e9 + 7;
+const lli mod2 = 998244353;
 const lli MAXN = 1e6;
 const double eps = 1e-10;
 const lli LINF = 1001002003004005006ll;
@@ -57,7 +58,7 @@ const string nys[] = {"No", "Yes"};
     cerr << #x << " = [ ";    \
     for (const auto &val : x) \
         cerr << val << " ";   \
-    cerr << "]\n";   //works fine for now
+    cerr << "]\n"; // works fine for now
 #define take(p, n, T) \
     vector<T> p(n);   \
     for (auto &i : p) \
@@ -82,7 +83,8 @@ const string nys[] = {"No", "Yes"};
 
 void err(istream_iterator<string> it) {}
 template <typename T, typename... Args>
-void err(istream_iterator<string> it, T a, Args... args) {
+void err(istream_iterator<string> it, T a, Args... args)
+{
     cerr << *it << " = " << a << endl;
     err(++it, args...);
 }
@@ -137,15 +139,18 @@ void err(istream_iterator<string> it, T a, Args... args) {
 
 // Utility functions
 inline lli gcd(lli a, lli b) { return b == 0 ? a : gcd(b, a % b); }
-#define lcm(a, b) (1LL*(a) * (b)) / gcd(a, b)
+#define lcm(a, b) (1LL * (a) * (b)) / gcd(a, b)
 
-inline lli madd(lli a, lli b, lli m = mod) { return ((a %m)  + (b % m)) % m; }
+inline lli madd(lli a, lli b, lli m = mod) { return ((a % m) + (b % m)) % m; }
 inline lli msub(lli a, lli b, lli m = mod) { return (((a % m) - (b % m)) % m + m) % m; }
 inline lli mmul(lli a, lli b, lli m = mod) { return ((a % m) * (b % m)) % m; }
-inline lli mpow(lli base, lli exp, lli m = mod) {
+inline lli mpow(lli base, lli exp, lli m = mod)
+{
     lli res = 1LL;
-    while (exp > 0) {
-        if (exp & 1) res = mmul(res, base, m);
+    while (exp > 0)
+    {
+        if (exp & 1)
+            res = mmul(res, base, m);
         base = mmul(base, base, m);
         exp >>= 1LL;
     }
@@ -157,14 +162,53 @@ inline lli minv(lli a, lli m = mod) { return mpow(a, m - 2, m); }
 // ------------------- CODE STARTS HERE ----------------
 // *****************************************************
 
-int main() {
+void Interact()
+{
+#undef endl
+    std::cout << std::endl;
+    std::cout.flush();
+#define endl '\n'
+}
+
+ll ask(vll p)
+{
+    std::cout << "? " ;
+    for (auto &i : p) cout << i << " "; //cout << "\n"
+    Interact();
+    ll res;
+    std::cin >> res;
+    return res;
+}
+
+void Report(std::vector<ll> &perm)
+{
+    std::cout << "! ";
+    for (auto &pr : perm)
+        std::cout << pr << gp;
+    Interact();
+}
+int main()
+{
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-    tc0 {
+    //amar mathada -_-
+    tc
+    {
         lli n;
-        cin>>n;
-        
+        cin >> n;
+
+        vll p = {1, 2, 3};
+        while (1)
+        {
+            lli x=ask(p);
+            if(x==0){
+                Report(p);
+                break;
+            }
+            p[rand()%3]=x;
+            
+        }
     }
-}
+}rdb.cpp

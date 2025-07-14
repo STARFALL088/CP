@@ -161,6 +161,59 @@ inline lli minv(lli a, lli m = mod) { return mpow(a, m - 2, m); }
 // *****************************************************
 // ------------------- CODE STARTS HERE ----------------
 // *****************************************************
+
+
+class DSU
+{
+    vll rank, parent;
+
+public:
+    DSU(lli n)
+    {
+        rank.resize(n + 1, 0);
+        parent.resize(n + 1);
+        for (lli i = 0; i <= n; ++i)
+        {
+            parent[i] = i;
+        }
+    }
+
+    lli find(lli node)
+    {
+        if (node == parent[node])
+        {
+            return node;
+        }
+        return parent[node] = find(parent[node]); // Path compression
+    }
+
+    void unionSets(lli u, lli v)
+    {
+        lli rootU = find(u);
+        lli rootV = find(v);
+
+        if (rootU == rootV)
+        {
+            return; // Both elements are already in the same set
+        }
+
+        // Union by rank
+        if (rank[rootU] < rank[rootV])
+        {
+            parent[rootU] = rootV;
+        }
+        else if (rank[rootV] < rank[rootU])
+        {
+            parent[rootV] = rootU;
+        }
+        else
+        {
+            parent[rootV] = rootU;
+            rank[rootU]++;
+        }
+    }
+};
+
 int getXOR(int n)
 {
     vector<long long> _p = {n, 1, n + 1, 0};
@@ -197,8 +250,20 @@ int main()
 
     tc0
     {
+
+        unordered_map<ll,ll>m;
+        if(m[1]==m[2]);if(m[1]==m[2]);
+        for(auto [i,j]:m){
+            cout<<i<<gp<<j<<endl;
+        }
+
+
+
+
+
+
     
-    circularPermutation(2,3);
+    //circularPermutation(2,3);
     
         //loop(i, 16) cout << i << gp << bitset<8>(i ^ (i >> 1)) << endl;
     }

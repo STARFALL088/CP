@@ -15,7 +15,7 @@ typedef vector<vll> vvl;
 typedef vector<bool> vb;
 typedef vector<string> vs;
 typedef vector<char> vc;
-typedef vector<vc> vvc;
+typedef vector<vc> vvc;                                     
 
 // Constants
 const lli mod = 1e9 + 7;
