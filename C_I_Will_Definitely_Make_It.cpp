@@ -196,10 +196,8 @@ bool action() {
     error(nxt, cur);
     if (p[nx] - cur > cur - pani + 1)
       return 0;
-    else {
-      pani += (p[nx] - cur);
-      cur = p[nx];
-    }
+    pani += (p[nx] - cur);
+    cur = p[nx];
   }
   return 1;
 }

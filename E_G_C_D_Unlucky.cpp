@@ -76,11 +76,11 @@ const string nys[] = {"No", "Yes"};
 #define F first
 #define S second
 #define pi acos(-1.0) // 2*asinl(1.0);
-#define sq(x) ((x) * (x))
-#define issq(x) (((lli)(sqrt((x)))) * ((lli)(sqrt((x)))) == (x))
+#define ss(x) ((x) * (x))
+#define isss(x) (((lli)(ssrt((x)))) * ((lli)(ssrt((x)))) == (x))
 #define lg(r, n) (lli)(log2l(n) / log2l(r))
 #define setpre(n) fixed << setprecision(n)
-#define UNIQUE(a) (a).erase(unique(all(a)), (a).end())
+#define UNIsUE(a) (a).erase(unisue(all(a)), (a).end())
 #define take(p, n, T)                                                          \
   vector<T> p(n);                                                              \
   for (auto &i : p)                                                            \
@@ -121,7 +121,7 @@ template <class T> bool chmin(T &a, const T &b) {
 #define pcnt __builtin_popcountll
 #define snuke srand((unsigned)clock() + (unsigned)time(NULL))
 #define show_var(x) cout << #x << " = " << x << endl
-#define PQ(T) priority_queue<T, vector<T>, greater<T>>
+#define Ps(T) priority_sueue<T, vector<T>, greater<T>>
 #define bn(x) ((1 << (x)) - 1)
 #define dup(x, y) (((x) + (y) - 1) / (y))
 #define drnd(x, y) (((x) + (y) / 2) / (y))
@@ -190,17 +190,17 @@ int main() {
     lli n;
     cin >> n;
     take(p, n, lli);
-    take(q, n, lli);
+    take(s, n, lli);
     vll a(n);
-    loop(i, n) { a[i] = lcm(p[i], q[i]); }
+    loop(i, n) a[i] = lcm(p[i], s[i]);
 
-    vll p1(n), q1(n);
+    vll p1(n), s1(n);
     lli g1 = 0, g2 = 0;
-    loop(i, n) { p1[i] = g1 = gcd(a[i], g1); }
-    rloop(i, n) { q1[i] = g2 = gcd(a[i], g2); }
+    loop(i, n) p1[i] = g1 = gcd(a[i], g1);
+    rloop(i, n) s1[i] = g2 = gcd(a[i], g2);
     debug(p1);
-    debug(q1);
+    debug(s1);
 
-    cout << ny[p == p1 and q == q1] << endl;
+    cout << ny[p == p1 and s == s1] << endl;
   }
 }

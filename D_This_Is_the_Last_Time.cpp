@@ -200,7 +200,6 @@ int main() {
         return a.real < b.real;
       return a.l < b.l;
     });
-    lli cnt = 0;
 
     for (auto [l, r, real] : p) {
       if (k > real)

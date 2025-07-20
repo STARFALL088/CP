@@ -196,14 +196,14 @@ int main() {
       pref[i + 1] = p[i] + pref[i];
     }
 
-    int mx = 0;
+    lli ans = 0;
     for (int i = 0; i + k <= n;) {
-      if (pref[i + k] - pref[i] == 0) {
-        mx++;
+      if (pref[i + k] == pref[i]) {
+        ans++;
         i += (k + 1);
       } else
         i++;
     }
-    cout << mx << endl;
+    cout << ans << endl;
   }
 }
