@@ -186,5 +186,9 @@ int main() {
   cin.tie(0);
   cout.tie(0);
 
-  tc0 {}
+  tc {
+    int n, m;
+    cin >> n >> m;
+    cout << ny[!(n == 1 or m == 1 or n == 2 and m == 2)] << endl;
+  }
 }
