@@ -173,19 +173,6 @@ int main() {
     tc {
         lli n,k;
         cin>>n>>k;
-        take(p,n,lli);
-        srt(p);
-        deque<lli>q(all(p));
-        while(k--){
-            if(q.empty())break;
-            if(q.size()==1){q.pop_back();break;}
-            if(q[0]+q[1]>=q.back()){
-                q.pop_back();
-            }
-            else{
-               loop(i,2) q.pop_front();
-            }
-        }
-        cout<<arrsum(q)<<endl;
+        
     }
 }

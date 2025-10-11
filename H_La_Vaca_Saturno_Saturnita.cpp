@@ -126,8 +126,7 @@ template<class T> bool chmin(T &a, const T &b) { if(a>b){a=b;return 1;}return 0;
 #define gp " "
 #define case(ii) cout << "Case " << ii << ": "
 #define freopen                       \
-    freopen("input.txt", "r", stdin); \
-    freopen("output.txt", "w", stdout);
+   
 // Graph input macro
 #define readgraph(arr, edges)         \
     for (int i = 0; i < (edges); i++) \

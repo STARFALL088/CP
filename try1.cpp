@@ -1,85 +1,28 @@
-#include <bits/stdc++.h>
-#include <fstream>
+#include<iostream>
 using namespace std;
-void signup()
-{
-    string name, pass;
-    cin >> name >> pass;
-    ofstream file;
-    file.open("one.txt",::ios::out|::ios::app);
-    
-    // file << "name : " << name << "," << endl;
-    // file << "pass : " << pass << endl;
-    file<<name<<","<<pass<<endl;;
-    
-    file.close();
-    cout << "Good job" << endl;
-}
-bool login()
-{
-    string name, pass;
-    cin >> name >> pass;
-    ifstream file("one.txt");
-    string line;
-    string a, b;
+class point{
+  private:
+    double x,y;
+  public:
+    void setval(double X,double Y){x=X,y=Y;}
+    double getx(){return x;}
+    double gety(){return y;}
+};
+double area(point p[]){
+  double area=0;
+  for(int i=0;i<3;i++){
+    area+=(p[i].getx()*p[i+1].gety());
+    area-=(p[i].gety()*p[i+1].getx());
+  }
+  return abs(area);
 
-    while (getline(file, line))
-    {
-        stringstream ss(line);
-        getline(ss, a, ',');
-        getline(ss, b, ',');
-        if (a == name && b == pass){
-            file.close();
-            return 1;}
-    }
-    file.close();
-    return 0;
 }
-void print(){
-    string line;
-    ifstream file("entry.txt");
-    while(getline(file,line)){
-        cout<<line<<endl;
-    }
-    file.close();
-}
-void take(){
-    string a,b;
-    cin.ignore();
-    cout<<"title";
-    getline(cin,a);
-    cout<<"go";
-    getline(cin,b);
-    ofstream file;
-    file.open("entry.txt",::ios::out|::ios::app);
-    file<<"-------------";
-    file<<a<<endl;
-    file<<b<<endl;
-    file.close();
-}
-
-int main()
-{
-    while (1)
-    {
-        cout << "1.sign up  2.log in " << endl;
-        int n;
-        cin >> n;
-        if (n == 1)
-        {
-            signup();
-        }
-        else if (n == 2)
-        {
-            if (login()){
-                cout << "yes";
-                cout<<"1.entry 2.print"<<endl;
-                int _;
-                cin>>_;
-
-                if(_==1) take();
-                else if(_==2)print();
-            }
-        }
-    }
+int main(){
+  point p[3];
+  for(int i=0;i<3;i++){
+    double x,y;
+    cin>>x>>y;
+    p[i].setval(x,y);
+  }
+    cout<<fixed<<area(p)/2;
 }

@@ -107,7 +107,7 @@ template<class T> bool chmin(T &a, const T &b) { if(a>b){a=b;return 1;}return 0;
 #define pcnt __builtin_popcountll
 #define snuke srand((unsigned)clock() + (unsigned)time(NULL))
 #define show_var(x) cout << #x << " = " << x << endl
-#define PQ(T) priority_queue<T, vector<T>, greater<T>>
+#define PQ(T) 
 #define bn(x) ((1 << (x)) - 1)
 #define dup(x, y) (((x) + (y) - 1) / (y))
 #define drnd(x, y) (((x) + (y) / 2) / (y))

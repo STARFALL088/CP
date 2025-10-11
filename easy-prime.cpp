@@ -79,7 +79,7 @@ const string nys[] = {"No", "Yes"};
 #define pi acos(-1.0) // 2*asinl(1.0);
 #define sq(x) ((x) * (x))
 #define issq(x) (((lli)(sqrt((x)))) * ((lli)(sqrt((x)))) == (x))
-#define lg(r, n) (lli)(log2l(n) / log2l(r))
+
 #define setpre(n) fixed << setprecision(n)
 #define UNIQUE(a) (a).erase(unique(all(a)), (a).end())
 #define take(p, n, T) \
