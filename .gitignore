@@ -1,32 +1,19 @@
-# CPH (Competitive Programming Helper) files
-.cph/
-
 # Compiled files
-*.out
-a.out
 *.exe
+*.out
 *.o
-h
-x
-y
-test
-try
-Tour
-Enumerate_Quotients
-
-# Editor files
-.vscode/
-.idea/
 
 # Test files
-*.in
-*.ans
-angel.in
-angle2.out
+*.testcases
+input.txt
+output.txt
+
+# IDE/Editor
+.cph/
+.vscode/
+*.swp
 
 # Misc
-*.md
-ai
-hfdj
-ollama-hpp/
-ollama.hpp
+*.png
+*.pyc
+__pycache__/

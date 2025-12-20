@@ -190,17 +190,6 @@ int main() {
     lli n, k;
     cin >> n >> k;
     take(p, n, lli);
-    lli ans = 0;
-    for (lli x = 31; x >= 0; x--) {
-      lli cur = (ans|(1LL << x));
-      //error(cur);
-      lli sum=0;
-      for (int i = 0; i < n; i++) {
-        sum+=max(0LL,cur-p[i]);
-      }
-      
-      if(sum<=k)ans=cur;
-    }
-    cout<<ans<<endl;
+   
   }
 }

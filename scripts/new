@@ -1,0 +1,18 @@
+#!/bin/bash
+mkdir -p $1 && cd $1
+cp ~/Coding/CP/template.cpp $1.cpp 2>/dev/null || echo '#include <bits/stdc++.h>
+using namespace std;
+
+#ifdef SMIE
+#define debug(x) cerr << #x << " = " << (x) << endl
+#endif
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    
+    return 0;
+}' > $1.cpp
+touch input.txt output.txt debug.txt
+subl $1.cpp input.txt output.txt debug.txt

@@ -1,4 +1,2 @@
-do {
-      if (action())
-        debug(p);
-    } while (next_permutation(all(p)))
+ for (int k = j; k <= size - 1 - i; k++)
+            s[k] = '1';
